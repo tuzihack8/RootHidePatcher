@@ -86,7 +86,7 @@ struct ContentView: View {
                 if let _ = selectedFile {
                     Toggle("Directly Convert Simple Tweaks", isOn: $simpleTweak)
                         .toggleStyle(SwitchToggleStyle(tint: Color.blue))
-                        .foregroundColor(.white.opacity(0.9))
+                        .foregroundColor(.white.opacity(0.4))
                         .frame(width: 350)
                         .padding(5)
                         .disabled(false).onChange(of: simpleTweak) { value in
@@ -108,7 +108,7 @@ struct ContentView: View {
                         }
                     Toggle("Require Dynamic Patches", isOn: $requireDynamicPatches)
                         .toggleStyle(SwitchToggleStyle(tint: Color.blue))
-                        .foregroundColor(.white.opacity(0.9))
+                        .foregroundColor(.white.opacity(0.3))
                         .frame(width: 350)
                         .padding(5)
                         .disabled(false).onChange(of: requireDynamicPatches) { value in

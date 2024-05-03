@@ -25,7 +25,7 @@
 		842F70832ACEC1BF002E5574 /* AuxiliaryExecute+Async.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842F70822ACEC1BF002E5574 /* AuxiliaryExecute+Async.swift */; };
 		842F70852ACEC1C3002E5574 /* AuxiliaryExecute+Shell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842F70842ACEC1C3002E5574 /* AuxiliaryExecute+Shell.swift */; };
 		842F70872ACEC1C7002E5574 /* AuxiliaryExecute+Spawn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842F70862ACEC1C7002E5574 /* AuxiliaryExecute+Spawn.swift */; };
-		84B37E0B2AFF65B600B2400E /* libroothide.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 842F706D2ACC3974002E5574 /* libroothide.tbd */; };
+		847099722B1B34E2003FA4ED /* roothide_sandbox.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 847099712B1B34E2003FA4ED /* roothide_sandbox.entitlements */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,8 +41,10 @@
 		6DE2082D29EB3F230053E93D /* MaterialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialView.swift; sourceTree = "<group>"; };
 		6DE2083129EB46850053E93D /* DocumentPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentPicker.swift; sourceTree = "<group>"; };
 		6DE2088B29F591160053E93D /* CreditsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditsView.swift; sourceTree = "<group>"; };
-		842F706C2ACC3973002E5574 /* roothide.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = roothide.h; sourceTree = "<group>"; };
-		842F706D2ACC3974002E5574 /* libroothide.tbd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.text-based-dylib-definition"; path = libroothide.tbd; sourceTree = "<group>"; };
+		841E40EF2B14E80300A8B198 /* roothide.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = roothide.h; sourceTree = "<group>"; };
+		841E40F02B14E80300A8B198 /* libroothide.tbd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.text-based-dylib-definition"; path = libroothide.tbd; sourceTree = "<group>"; };
+		841E40F12B14E80300A8B198 /* module.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
+		841E40F22B14E80300A8B198 /* stub.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stub.h; sourceTree = "<group>"; };
 		842F70702ACD265C002E5574 /* Derootifier-Swift-Bridging.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Derootifier-Swift-Bridging.h"; sourceTree = "<group>"; };
 		842F70712ACDC6DC002E5574 /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
 		842F70722ACDC6DC002E5574 /* entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = entitlements.plist; sourceTree = "<group>"; };
@@ -55,6 +57,7 @@
 		842F70822ACEC1BF002E5574 /* AuxiliaryExecute+Async.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "AuxiliaryExecute+Async.swift"; path = "AuxiliaryExecute/Sources/AuxiliaryExecute/AuxiliaryExecute+Async.swift"; sourceTree = "<group>"; };
 		842F70842ACEC1C3002E5574 /* AuxiliaryExecute+Shell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "AuxiliaryExecute+Shell.swift"; path = "AuxiliaryExecute/Sources/AuxiliaryExecute/AuxiliaryExecute+Shell.swift"; sourceTree = "<group>"; };
 		842F70862ACEC1C7002E5574 /* AuxiliaryExecute+Spawn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "AuxiliaryExecute+Spawn.swift"; path = "AuxiliaryExecute/Sources/AuxiliaryExecute/AuxiliaryExecute+Spawn.swift"; sourceTree = "<group>"; };
+		847099712B1B34E2003FA4ED /* roothide_sandbox.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = roothide_sandbox.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,7 +66,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				6DE2089929F5B80A0053E93D /* FluidGradient in Frameworks */,
-				84B37E0B2AFF65B600B2400E /* libroothide.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -73,6 +75,8 @@
 		6DCF8E2729EA9E6F00D55A37 = {
 			isa = PBXGroup;
 			children = (
+				847099712B1B34E2003FA4ED /* roothide_sandbox.entitlements */,
+				841E40EE2B14E80300A8B198 /* roothide */,
 				842F707B2ACEB823002E5574 /* RootHidePatcher-Info.plist */,
 				84B37E152AFFBB8B00B2400E /* AuxiliaryExecute */,
 				842F70792ACEAB82002E5574 /* postinst */,
@@ -80,8 +84,6 @@
 				842F70722ACDC6DC002E5574 /* entitlements.plist */,
 				842F70712ACDC6DC002E5574 /* Makefile */,
 				842F70702ACD265C002E5574 /* Derootifier-Swift-Bridging.h */,
-				842F706D2ACC3974002E5574 /* libroothide.tbd */,
-				842F706C2ACC3973002E5574 /* roothide.h */,
 				6DCF8E4429EA9F5D00D55A37 /* patch.sh */,
 				842F70772ACE4286002E5574 /* roothide.entitlements */,
 				6DCF8E3229EA9E6F00D55A37 /* Derootifier */,
@@ -146,6 +148,17 @@
 				6DE2088B29F591160053E93D /* CreditsView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		841E40EE2B14E80300A8B198 /* roothide */ = {
+			isa = PBXGroup;
+			children = (
+				841E40EF2B14E80300A8B198 /* roothide.h */,
+				841E40F02B14E80300A8B198 /* libroothide.tbd */,
+				841E40F12B14E80300A8B198 /* module.modulemap */,
+				841E40F22B14E80300A8B198 /* stub.h */,
+			);
+			path = roothide;
 			sourceTree = "<group>";
 		};
 		84AB4B952AFE896D00F74439 /* Frameworks */ = {
@@ -231,6 +244,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				842F70782ACE4385002E5574 /* roothide.entitlements in Resources */,
+				847099722B1B34E2003FA4ED /* roothide_sandbox.entitlements in Resources */,
 				842F706B2ACC3847002E5574 /* patch.sh in Resources */,
 				6DCF8E3B29EA9E7100D55A37 /* Preview Assets.xcassets in Resources */,
 				6DCF8E3829EA9E7100D55A37 /* Assets.xcassets in Resources */,
@@ -388,6 +402,7 @@
 				DEVELOPMENT_TEAM = 49LJ27SG38;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)";
 				INFOPLIST_FILE = "RootHidePatcher-Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -403,6 +418,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/roothide",
 				);
 				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.roothide.patcher;
@@ -428,6 +444,7 @@
 				DEVELOPMENT_TEAM = 49LJ27SG38;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)";
 				INFOPLIST_FILE = "RootHidePatcher-Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -443,6 +460,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/roothide",
 				);
 				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.roothide.patcher;

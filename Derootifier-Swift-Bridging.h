@@ -11,9 +11,9 @@
 #include <Foundation/Foundation.h>
 
 #if TARGET_IPHONE_SIMULATOR
-#include "stub.h"
+#include <roothide/stub.h>
 #else
-#include "roothide.h"
+#include <roothide/roothide.h>
 #endif
 
 #import <spawn.h>

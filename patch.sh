@@ -99,7 +99,8 @@ Derootifier() {
     find "$TEMPDIR_NEW" -type f | while read -r file; do
       fname=$(basename "$file")
       fpath=/$(realpath --relative-base="$TEMPDIR_NEW" "$file")
-      if file -ib "$file" | grep -q "x-mach-binary; charset=binary"; then
+      ftype=$(file -b "$file")
+      if echo $ftype | grep -q "Mach-O"; then
         $ECHO "=> $fpath"
         $ECHO -n "patch..."
         otool -L "$file" | tail -n +2 | cut -d' ' -f1 | tr -d "[:blank:]" > "$TEMPDIR_OLD"/._lib_cache
@@ -118,7 +119,11 @@ Derootifier() {
         install_name_tool -add_rpath "@loader_path/.jbroot/Library/Frameworks" "$file"
 
         $ECHO -n "resign..."
-        $LDID -M "-S$(dirname $(realpath $0))/roothide.entitlements" "$file"
+        if echo $ftype | grep -q "executable"; then
+            $LDID -M "-S$(dirname $(realpath $0))/roothide.entitlements" "$file"
+        else
+            $LDID -S "$file"
+        fi
         $ECHO "~ok."
       fi
     done
@@ -167,7 +172,8 @@ mv -f "$TEMPDIR_OLD"/DEBIAN "$TEMPDIR_NEW"/
 #fi
 
 if [ -d "$TEMPDIR_OLD/var/jb" ]; then
-    mv -f "$TEMPDIR_OLD"/var/jb/* "$TEMPDIR_NEW"/
+    subitemcount=$(ls -A "$TEMPDIR_OLD/var/jb")
+    if [ -n "$subitemcount" ]; then mv -f "$TEMPDIR_OLD"/var/jb/* "$TEMPDIR_NEW"/ ; fi
     rmdir "$TEMPDIR_OLD"/var/jb
 fi
 rmdir "$TEMPDIR_OLD"/var >/dev/null 2>&1 || true
@@ -181,6 +187,7 @@ if [ ! -z "$3" ]; then
     mkdir -p "$TEMPDIR_NEW"/var/mobile/Library/pkgmirror
     rsync -a "$TEMPDIR_NEW"/ "$TEMPDIR_NEW"/var/mobile/Library/pkgmirror/ --exclude /var/mobile/Library/pkgmirror
     mv "$TEMPDIR_NEW"/var/mobile/Library/pkgmirror/DEBIAN "$TEMPDIR_NEW"/var/mobile/Library/pkgmirror/DEBIAN.$DEB_PACKAGE
+# append after "Package" : "Status: install ok installed" > "$TEMPDIR_NEW"/var/mobile/Library/pkgmirror/DEBIAN.$DEB_PACKAGE/control
 fi
 
 #rm -f "$TEMPDIR_NEW"/DEBIAN/list "$TEMPDIR_NEW"/DEBIAN/md5sums
@@ -199,7 +206,8 @@ find "$TEMPDIR_NEW" -type f -size +0c \! -path "*/var/mobile/Library/pkgmirror/*
   fixedpaths=""
   fname=$(basename "$file")
   fpath=/$(realpath --relative-base="$TEMPDIR_NEW" "$file")
-  if file -ib "$file" | grep -q "x-mach-binary; charset=binary"; then
+  ftype=$(file -b "$file")
+  if echo $ftype | grep -q "Mach-O"; then
     $ECHO "=> $fpath"
     $ECHO -n "patch..."
     lsrpath "$file" | while read line; do
@@ -217,7 +225,16 @@ find "$TEMPDIR_NEW" -type f -size +0c \! -path "*/var/mobile/Library/pkgmirror/*
         fi
     done
     $ECHO -n "resign..."
-    $LDID -M "-S$(dirname $(realpath $0))/roothide.entitlements" "$file"
+    if [[ "$file" == *.app/PlugIns/* ]]; then
+        entitlements="roothide_sandbox.entitlements" # with -M, procursus ldid should overwrite exists keys
+    else
+        entitlements="roothide.entitlements"
+    fi
+    if echo $ftype | grep -q "executable"; then
+        $LDID -M "-S$(dirname $(realpath $0))/$entitlements" "$file"
+    else
+        $LDID "$file"
+    fi
     $ECHO "~ok."
     fixedpaths=$(strings - "$file" | grep /var/jb || true)
     if [ "$3" == "AutoPatches" ]; then
