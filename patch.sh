@@ -225,15 +225,10 @@ find "$TEMPDIR_NEW" -type f -size +0c \! -path "*/var/mobile/Library/pkgmirror/*
         fi
     done
     $ECHO -n "resign..."
-    if [[ "$file" == *.app/PlugIns/* ]]; then
-        entitlements="roothide_sandbox.entitlements" # with -M, procursus ldid should overwrite exists keys
-    else
-        entitlements="roothide.entitlements"
-    fi
     if echo $ftype | grep -q "executable"; then
-        $LDID -M "-S$(dirname $(realpath $0))/$entitlements" "$file"
+        $LDID -M "-S$(dirname $(realpath $0))/roothide.entitlements" "$file"
     else
-        $LDID "$file"
+        $LDID -S "$file"
     fi
     $ECHO "~ok."
     fixedpaths=$(strings - "$file" | grep /var/jb || true)
@@ -306,9 +301,10 @@ fi
 
 $SED -i '/^$/d' "$TEMPDIR_NEW"/DEBIAN/control
 $SED -i 's|iphoneos-arm64|iphoneos-arm64e|g' "$TEMPDIR_NEW"/DEBIAN/control
+$SED -i '/^Conflicts: /s/roothide/r-o-o-t-l-e-s-s-/g' "$TEMPDIR_NEW"/DEBIAN/control
 
 if [ "$3" == "AutoPatches" ]; then
-    PreDepends="rootless-compat(>= 0.1)"
+    PreDepends="rootless-compat(>= 0.9)"
 elif [ "$3" == "DynamicPatches" ]; then
     $SED -i "/^Version\:/d" "$TEMPDIR_NEW"/DEBIAN/control
     echo "Version: $DEB_VERSION~roothide" >> "$TEMPDIR_NEW"/DEBIAN/control
