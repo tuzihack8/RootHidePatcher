@@ -9,6 +9,7 @@
 #define Derootifier_Swift_Bridging_h
 
 #include <Foundation/Foundation.h>
+#include "AppFileShare.h"
 
 #if TARGET_IPHONE_SIMULATOR
 #include <roothide/stub.h>

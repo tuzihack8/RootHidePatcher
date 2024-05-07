@@ -52,7 +52,7 @@ struct ContentView: View {
                     Button("Convert .deb") {
                         UINotificationFeedbackGenerator().notificationOccurred(.success)
                         UIApplication.shared.alert(title: "Converting...", body: "Please wait", withButton: false)
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                        DispatchQueue.global().async {
                             
                             let name = debfile.deletingPathExtension().lastPathComponent.replacingOccurrences(of: "iphoneos-arm64", with: "-a-r-c-h-").replacingOccurrences(of: "iphoneos-arm", with: "-a-r-c-h-").replacingOccurrences(of: "-a-r-c-h-", with: "iphoneos-arm64e")
                             
@@ -62,18 +62,31 @@ struct ContentView: View {
                             if usingRootlessCompat { patch="AutoPatches" } else if requireDynamicPatches { patch="DynamicPatches" }
                             let (success,outputAux) = repackDeb(scriptPath: scriptPath, debURL: debfile, outputURL: output, patch: patch)
                             
-                            UIApplication.shared.dismissAlert(animated: false)
-                            
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                                if success {
+                            DispatchQueue.main.async {
+                                UIApplication.shared.dismissAlert(animated: false) {
+                                    if !success {
+                                        UIApplication.shared.alert(title: "Error", body: outputAux)
+                                        return
+                                    }
                                     resetPatches()
                                     selectedFile = nil
-                                    UIApplication.shared.confirmAlert(title: "Done", body: outputAux+"\nPress <OK> to view deb file.", onOK: {
+                                    
+                                    let alert = UIAlertController(title: "Done", message: outputAux, preferredStyle: .alert)
+                                    if IsAppAvailable("org.coolstar.SileoStore") {
+                                        alert.addAction(.init(title: "->Sileo", style: .default, handler: { _ in
+                                            ShareFileToApp("org.coolstar.SileoStore", jbroot(output.path))
+                                        }))
+                                    } else if IsAppAvailable("xyz.willy.Zebra") {
+                                        alert.addAction(.init(title: "->Zebra", style: .default, handler: { _ in
+                                            ShareFileToApp("xyz.willy.Zebra", jbroot(output.path))
+                                        }))
+                                    }
+                                    
+                                    alert.addAction(.init(title: "->Share", style: .default, handler: { _ in
                                         UIImpactFeedbackGenerator(style: .soft).impactOccurred()
                                         checkFileMngrs(path: output.path)
-                                    }, noCancel: true)
-                                } else {
-                                    UIApplication.shared.alert(title: "Error", body: outputAux)
+                                    }))
+                                    UIApplication.shared.present(alert: alert)
                                 }
                             }
                         }

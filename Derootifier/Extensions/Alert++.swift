@@ -10,9 +10,9 @@ import UIKit
 var currentUIAlertController: UIAlertController?
 
 extension UIApplication {
-    func dismissAlert(animated: Bool) {
+    func dismissAlert(animated: Bool, completion: (() -> Void)? = nil) {
         DispatchQueue.main.async {
-            currentUIAlertController?.dismiss(animated: animated)
+            currentUIAlertController?.dismiss(animated: animated, completion: completion)
         }
     }
     func alert(title: String, body: String, animated: Bool = true, withButton: Bool = true) {
@@ -41,13 +41,13 @@ extension UIApplication {
         }
     }
     
-    func present(alert: UIViewController) {
+    func present(alert: UIViewController, animated: Bool = true) {
         if var topController = self.windows[0].rootViewController {
             while let presentedViewController = topController.presentedViewController {
                 topController = presentedViewController
             }
             
-            topController.present(alert, animated: true)
+            topController.present(alert, animated: animated)
             // topController should now be your topmost view controller
         }
     }

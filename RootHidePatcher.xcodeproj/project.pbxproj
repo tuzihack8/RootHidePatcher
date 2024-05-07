@@ -25,6 +25,7 @@
 		842F70832ACEC1BF002E5574 /* AuxiliaryExecute+Async.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842F70822ACEC1BF002E5574 /* AuxiliaryExecute+Async.swift */; };
 		842F70852ACEC1C3002E5574 /* AuxiliaryExecute+Shell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842F70842ACEC1C3002E5574 /* AuxiliaryExecute+Shell.swift */; };
 		842F70872ACEC1C7002E5574 /* AuxiliaryExecute+Spawn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842F70862ACEC1C7002E5574 /* AuxiliaryExecute+Spawn.swift */; };
+		845FA8552BE9B603009C564D /* AppFileShare.m in Sources */ = {isa = PBXBuildFile; fileRef = 845FA8532BE9B603009C564D /* AppFileShare.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,6 +58,8 @@
 		842F70822ACEC1BF002E5574 /* AuxiliaryExecute+Async.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "AuxiliaryExecute+Async.swift"; path = "AuxiliaryExecute/Sources/AuxiliaryExecute/AuxiliaryExecute+Async.swift"; sourceTree = "<group>"; };
 		842F70842ACEC1C3002E5574 /* AuxiliaryExecute+Shell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "AuxiliaryExecute+Shell.swift"; path = "AuxiliaryExecute/Sources/AuxiliaryExecute/AuxiliaryExecute+Shell.swift"; sourceTree = "<group>"; };
 		842F70862ACEC1C7002E5574 /* AuxiliaryExecute+Spawn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "AuxiliaryExecute+Spawn.swift"; path = "AuxiliaryExecute/Sources/AuxiliaryExecute/AuxiliaryExecute+Spawn.swift"; sourceTree = "<group>"; };
+		845FA8532BE9B603009C564D /* AppFileShare.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppFileShare.m; sourceTree = "<group>"; };
+		845FA8542BE9B603009C564D /* AppFileShare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppFileShare.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +84,8 @@
 				842F70732ACDC6DC002E5574 /* control */,
 				842F70722ACDC6DC002E5574 /* entitlements.plist */,
 				842F70712ACDC6DC002E5574 /* Makefile */,
+				845FA8542BE9B603009C564D /* AppFileShare.h */,
+				845FA8532BE9B603009C564D /* AppFileShare.m */,
 				842F70702ACD265C002E5574 /* Derootifier-Swift-Bridging.h */,
 				6DCF8E4429EA9F5D00D55A37 /* patch.sh */,
 				842F70772ACE4286002E5574 /* roothide.entitlements */,
@@ -261,6 +266,7 @@
 				842F70832ACEC1BF002E5574 /* AuxiliaryExecute+Async.swift in Sources */,
 				842F70812ACEC1BB002E5574 /* AuxiliaryExecute.swift in Sources */,
 				842F70742ACDC6DC002E5574 /* Makefile in Sources */,
+				845FA8552BE9B603009C564D /* AppFileShare.m in Sources */,
 				6DCF8E3629EA9E6F00D55A37 /* ContentView.swift in Sources */,
 				6DE2082C29EB3E990053E93D /* TintedButton.swift in Sources */,
 				6DE2082729EB2E940053E93D /* ShellScript.swift in Sources */,
