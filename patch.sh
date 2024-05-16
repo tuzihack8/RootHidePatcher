@@ -85,6 +85,10 @@ if [[ {ellekit,oldabi} =~ "$DEB_PACKAGE" ]] || [ "$DEB_MAINTAINER" == "Procursus
     $ECHO "*** Not a tweak package!\ncontact @RootHideDev to update it.\n\nskipping and exiting cleanly."
     rm -rf "$TEMPDIR_OLD" "$TEMPDIR_NEW"
     exit 1;
+elif [[ {"xyz.cypwn.xinam1ne"} =~ "$DEB_PACKAGE" ]]; then
+    $ECHO "*** This package is not compatible, please contact its developer to update it.\n\nskipping and exiting cleanly."
+    rm -rf "$TEMPDIR_OLD" "$TEMPDIR_NEW"
+    exit 1;
 fi
 
 OUTPUT_PATH="$TMPDIR/$DEB_PACKAGE"_"$DEB_VERSION"_"iphoneos-arm64e".deb
