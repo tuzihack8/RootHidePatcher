@@ -41,6 +41,7 @@
 		6DE2082D29EB3F230053E93D /* MaterialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialView.swift; sourceTree = "<group>"; };
 		6DE2083129EB46850053E93D /* DocumentPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentPicker.swift; sourceTree = "<group>"; };
 		6DE2088B29F591160053E93D /* CreditsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditsView.swift; sourceTree = "<group>"; };
+		840A948E2C6CA03E00180FFA /* roothide.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = roothide.h; sourceTree = "<group>"; };
 		8415E3B82BE47A69001F31A8 /* sandbox.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = sandbox.entitlements; sourceTree = "<group>"; };
 		841E40EF2B14E80300A8B198 /* roothide.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = roothide.h; sourceTree = "<group>"; };
 		841E40F02B14E80300A8B198 /* libroothide.tbd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.text-based-dylib-definition"; path = libroothide.tbd; sourceTree = "<group>"; };
@@ -78,6 +79,8 @@
 			isa = PBXGroup;
 			children = (
 				841E40EE2B14E80300A8B198 /* roothide */,
+				840A948E2C6CA03E00180FFA /* roothide.h */,
+				842F70702ACD265C002E5574 /* Derootifier-Swift-Bridging.h */,
 				842F707B2ACEB823002E5574 /* RootHidePatcher-Info.plist */,
 				84B37E152AFFBB8B00B2400E /* AuxiliaryExecute */,
 				842F70792ACEAB82002E5574 /* postinst */,
@@ -86,7 +89,6 @@
 				842F70712ACDC6DC002E5574 /* Makefile */,
 				845FA8542BE9B603009C564D /* AppFileShare.h */,
 				845FA8532BE9B603009C564D /* AppFileShare.m */,
-				842F70702ACD265C002E5574 /* Derootifier-Swift-Bridging.h */,
 				6DCF8E4429EA9F5D00D55A37 /* patch.sh */,
 				842F70772ACE4286002E5574 /* roothide.entitlements */,
 				8415E3B82BE47A69001F31A8 /* sandbox.entitlements */,

@@ -85,7 +85,7 @@ if [[ {ellekit,oldabi} =~ "$DEB_PACKAGE" ]] || [ "$DEB_MAINTAINER" == "Procursus
     $ECHO "*** Not a tweak package!\ncontact @RootHideDev to update it.\n\nskipping and exiting cleanly."
     rm -rf "$TEMPDIR_OLD" "$TEMPDIR_NEW"
     exit 1;
-elif [[ {"xyz.cypwn.xinam1ne"} =~ "$DEB_PACKAGE" ]]; then
+elif [[ {"xyz.cypwn.xinam1ne","app.legizmo.moonstone","lunotech11.legizmo.lighthouse","lunotech11.legizmo.kincaid","lunotech11.legizmo.jupiter","lunotech11.legizmo.grace"} =~ "$DEB_PACKAGE" ]]; then
     $ECHO "*** This package is not compatible, please contact its developer to update it.\n\nskipping and exiting cleanly."
     rm -rf "$TEMPDIR_OLD" "$TEMPDIR_NEW"
     exit 1;
@@ -100,7 +100,7 @@ Derootifier() {
 
     mv -f "$TEMPDIR_OLD"/* "$TEMPDIR_NEW"/
     
-    find "$TEMPDIR_NEW" -type f | while read -r file; do
+    find "$TEMPDIR_NEW" -type f -size +0c \! -path "*/var/mobile/Library/pkgmirror/*" \! -path "*.lproj/*" \! -path "*.png" \! -path "*.svg" \! -path "*.strings" \! -path "*.lua" | while read -r file; do
       fname=$(basename "$file")
       fpath=/$(realpath --relative-base="$TEMPDIR_NEW" "$file")
       ftype=$(file -b "$file")
@@ -205,7 +205,7 @@ lsrpath() {
     ' | sort | uniq
 }
 
-find "$TEMPDIR_NEW" -type f -size +0c \! -path "*/var/mobile/Library/pkgmirror/*" \! -path "*.lproj/*" \! -path "*.png" \! -path "*.svg" \! -path "*.strings" | while read -r file; do
+find "$TEMPDIR_NEW" -type f -size +0c \! -path "*/var/mobile/Library/pkgmirror/*" \! -path "*.lproj/*" \! -path "*.png" \! -path "*.svg" \! -path "*.strings" \! -path "*.lua" | while read -r file; do
   LOG "$file"
   fixedpaths=""
   fname=$(basename "$file")

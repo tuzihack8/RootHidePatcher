@@ -12,10 +12,10 @@
 #include "AppFileShare.h"
 
 #if TARGET_IPHONE_SIMULATOR
-#include <roothide/stub.h>
-#else
-#include <roothide/roothide.h>
+#define ROOTHIDE_USE_STUB
 #endif
+
+#include "roothide.h"
 
 #import <spawn.h>
 
